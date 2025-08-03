@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mushroom Classifier</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Mushroom Edibility Prediction</h2>
+        <form method="post">
+            {% for feature in features %}
+                <label>{{ feature.replace('-', ' ').title() }}</label>
+                <input type="text" name="{{ feature }}" required><br>
+            {% endfor %}
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction %}
+            <div class="result">Result: {{ 'Edible' if prediction == 'e' else 'Poisonous' }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
